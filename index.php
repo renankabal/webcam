@@ -12,7 +12,7 @@
 <body>
 <div>
 	<form name="foto" method="post" action="fotossalvar.php" enctype="multipart/form-data">
-	<div><input type="text" name="imagem" id="foto"></div>
+	<div><textarea name="imagem" id="foto" style="display:none;"></textarea></div>
 	<div><input type="submit" value="Enviar"></div>
 	</form>
     <div><video id="video" width="354" height="472" autoplay></video></div>
@@ -50,12 +50,10 @@
     }, false);
     document.getElementById("snap").addEventListener("click", function() {      
         canvas.getContext("2d").drawImage(video, 0, 0, 354, 472);       
-        alert(canvas.toDataURL());
+        // alert(canvas.toDataURL());
+        $('[name="imagem"]').val('');
+        $('[name="imagem"]').val(canvas.toDataURL());
     });
-    // document.getElementById("save").addEventListener("click", function() {      
-    //     $.post('fotossalvar.php', {imagem:canvas.toDataURL()}, function(data){
-    //     },'json');
-    // });
     document.getElementById("save").addEventListener("click", function() {     
         // $('#foto').val('teste');
         $('#foto').val(canvas.toDataURL());
